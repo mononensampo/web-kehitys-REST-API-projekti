@@ -1,17 +1,4 @@
-/* ============================================================
-   Crate – artist & album browser powered by the Last.fm API
-   1. Create a free API key: https://www.last.fm/api/account/create
-   2. Paste it below.
-   ============================================================ */
-const API_KEY = process.env.MY_API_KEY;
-if (API_KEY) {
-console.log("API-avain ladattu turvallisesti GitHub Actionsista.");
-// Tee API-kutsu käyttäen API_KEY:tä
-} else {
-console.error("VIRHE: API-avainta ei löydy ympäristömuuttujista.");
-}
 
-const API_URL = "https://ws.audioscrobbler.com/2.0/";
 
 // Artists shown in the list on start-up. Edit freely.
 const DEFAULT_ARTISTS = [
@@ -67,8 +54,8 @@ const hue = (name) => [...name].reduce((sum, ch) => sum + ch.charCodeAt(0), 0) %
 const initials = (name) => name.split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
 
 async function lastfm(method, params = {}) {
-  const url = new URL(API_URL);
-  url.search = new URLSearchParams({ method, api_key: API_KEY, format: "json", ...params });
+  const url = new URL("/.netlify/functions/lastfm", window.location.origin);
+  url.search = new URLSearchParams({ method, ...params });
   const key = url.toString();
   if (cache.has(key)) return cache.get(key);
 
@@ -374,10 +361,5 @@ dialog.addEventListener("click", (event) => {
 });
 
 /* ---------- Start ---------- */
-renderList();
-if (API_KEY === "YOUR_LASTFM_API_KEY") {
-  renderMissingKey();
-} else {
-  renderWelcome();
-  selectArtist(state.artists[0]);
-}
+renderWelcome();
+selectArtist(state.artists[0]);
