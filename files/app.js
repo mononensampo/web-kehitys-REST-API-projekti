@@ -3,7 +3,13 @@
    1. Create a free API key: https://www.last.fm/api/account/create
    2. Paste it below.
    ============================================================ */
-const API_KEY = "dd47ce879f3214b76aa08ba7f58e10bc";
+const API_KEY = process.env.MY_API_KEY;
+if (API_KEY) {
+console.log("API-avain ladattu turvallisesti GitHub Actionsista.");
+// Tee API-kutsu käyttäen API_KEY:tä
+} else {
+console.error("VIRHE: API-avainta ei löydy ympäristömuuttujista.");
+}
 
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
 
