@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crate – browse artists and albums with Last.fm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <header class="brand">
+        <h1>Crate</h1>
+        <p>Pick an artist and flip through their records.</p>
+      </header>
+
+      <form id="search-form" class="search" role="search">
+        <input id="search-input" type="search" placeholder="Find another artist" aria-label="Find another artist" autocomplete="off">
+        <button type="submit">Find</button>
+      </form>
+
+      <nav aria-label="Artists">
+        <ul id="artist-list" class="artist-list"></ul>
+      </nav>
+    </aside>
+
+    <main id="main" class="main" aria-live="polite" tabindex="-1"></main>
+  </div>
+
+  <dialog id="album-dialog" aria-labelledby="album-title">
+    <div id="album-body"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
