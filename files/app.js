@@ -54,7 +54,7 @@ const hue = (name) => [...name].reduce((sum, ch) => sum + ch.charCodeAt(0), 0) %
 const initials = (name) => name.split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
 
 async function lastfm(method, params = {}) {
-  const url = new URL("/.netlify/functions/lastfm", window.location.origin);
+  const url = new URL("/.netlify/functions/lastfm.mjs", window.location.origin);
   url.search = new URLSearchParams({ method, ...params });
   const key = url.toString();
   if (cache.has(key)) return cache.get(key);

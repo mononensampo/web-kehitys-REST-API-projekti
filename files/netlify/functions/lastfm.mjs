@@ -14,7 +14,7 @@ export async function handler(event) {
     return { statusCode: 400, body: JSON.stringify({ error: "Method not allowed" }) };
   }
 
-  params.set("api_key", process.env.LASTFM_API_KEY);
+  params.set("api_key", process.env.MY_API_KEY);
   params.set("format", "json");
 
   try {
